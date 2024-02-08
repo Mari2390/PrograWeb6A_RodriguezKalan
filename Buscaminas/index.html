@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscaminas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #tablero {
+            display: grid;
+            gap: 2px;
+        }
+        .celda {
+            width: 30px;
+            height: 30px;
+            background-color: #ddd;
+            border: 1px solid #888;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .celda:hover {
+            background-color: #ccc;
+        }
+        .celda.revelada {
+            pointer-events: none;
+        }
+        .celda.marcada::after {
+            content: '🚩';
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+    <label for="nivel">Selecciona el nivel :</label>
+    <select id="nivel">
+        <option value="">Ninguno</option>
+        <option value="facil">Fácil</option>
+        <option value="medio">Medio</option>
+        <option value="dificil">Dificil</option>
+    </select>
+
+    <div id="tablero"></div>
+    <script>
+        function generarTablero(filas, columnas) {
+            // Obtener el contenedor del tablero
+            var tablero = document.getElementById("tablero");
+
+            // Limpiar el tablero
+            tablero.innerHTML = "";
+            // Crear las celdas del tablero
+            for (var i = 0; i < filas; i++) {
+                for (var j = 0; j < columnas; j++) {
+                    var celda = document.createElement("div");
+                    celda.className = "celda";
+                    celda.textContent = ""; // Puedes inicializar con el contenido que desees
+                    celda.setAttribute('data-fila', i);
+                    celda.setAttribute('data-columna', j);
+                    const fila = i;
+                    const columna = j;
+
+                    tablero.appendChild(celda);
+                    // Agregar evento de clic a las celdas
+                    celda.addEventListener("mousedown", (e) => {
+                        e.preventDefault(); // Evitar el menu contextual en el clic derecho
+
+                        const fila = parseInt(e.target.getAttribute('data-fila'));
+                        const columna = parseInt(e.target.getAttribute('data-columna'));
+                        const celda = document.querySelector(`.celda[data-fila="${fila}"][data-columna="${columna}"]`);
+
+                        if (e.button === 2) {
+                            // Boton derecho del mouse
+                            marcarCelda(celda);
+                        } else if (e.button === 0 && !celda.classList.contains('marcada')) {
+                            // Boton izquierdo del mouse y la celda no esta marcada
+                            revelarCelda(fila, columna, celda);
+                        }
+                    });
+                }
+            }
+            // Establecer las dimensiones del tablero usando CSS Grid
+            tablero.style.gridTemplateColumns = `repeat(${columnas}, 30px)`;
+        }
+
+        const coloresNumeros = [
+            "blue",
+            "green",
+            "red",
+            "purple",
+            "maroon",
+            "turquoise",
+            "black",
+            "gray",
+        ]
+
+        // Funcion para marcar/desmarcar una celda con una bandera
+        function marcarCelda(celda) {
+            if (!celda.classList.contains('revelada')) {
+                if (celda.classList.contains('marcada')) {
+                    // Desmarcar la celda
+                    celda.classList.remove('marcada');
+                } else {
+                    // Marcar la celda
+                    celda.classList.add('marcada');
+                }
+            }
+        }
+
+        // Funcion asincronica para revelar una celda
+        async function revelarCelda(fila, columna, celda) {
+             // Llamada a la API para revelar la celda en el servidor
+            await fetch(window.location.href + 'revelar_celda.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ fila, columna })
+            }).then(response => response.json())
+                .then(data => {
+                    const spanNumero = document.createElement('span');
+
+                    celda.classList.add('revelada');
+                    celda.classList.remove('marcada'); // Quitar la bandera al revelar la celda
+                    
+                    if (data.valor !== -1 && data.valor !== 0) {
+                        // Mostrar el numero en la celda
+                        spanNumero.setAttribute('style', `color: ${coloresNumeros[data.valor - 1]}`);
+                        spanNumero.textContent = data.valor;
+
+                        celda.appendChild(spanNumero);
+                    } else if (data.valor === 0) {
+                        // Celda vacia
+                        spanNumero.textContent = '';
+                        celda.setAttribute('style', 'background-color: gray');
+                        celda.appendChild(spanNumero);
+                    } else {
+                         // Mina encontrada, mostrar la mina y revelar todas las minas
+                        spanNumero.textContent = '💣';
+                        celda.appendChild(spanNumero);
+                        celda.style.backgroundColor = 'red';
+                        revelarTodasMinas(data.minas);
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+        }
+
+        // Funcion para revelar todas las minas y deshabilitar interacciones
+        function revelarTodasMinas(minas) {
+            const celdas = document.querySelectorAll('.celda');
+            celdas.forEach(celda => {
+                if (!celda.classList.contains('revelada')) {
+                    const fila = parseInt(celda.getAttribute('data-fila'));
+                    const columna = parseInt(celda.getAttribute('data-columna'));
+
+                    const esMina = minas.some(mina => mina.fila === fila && mina.columna === columna);
+
+                    // Limpiar la celda antes de mostrar la mina
+                    celda.innerHTML = '';
+
+                    if (esMina) {
+                        const spanNumero = document.createElement('span');
+                        celda.classList.add('revelada');
+                        spanNumero.textContent = '💣';
+                        celda.appendChild(spanNumero);
+
+                        if (celda.classList.contains('marcada')) {
+                            // Quitar la bandera solo si la celda tiene una mina
+                            celda.classList.remove('marcada');
+                        }
+                    } 
+                }
+            });
+            // Deshabilitar interacciones despuus de revelar todas las minas
+            deshabilitarInteracciones();
+        }
+
+     // Funcion para deshabilitar todas las interacciones del usuario
+        function deshabilitarInteracciones() {
+            const celdas = document.querySelectorAll('.celda');
+            celdas.forEach(celda => {
+                celda.classList.add('revelada');
+            });
+        }
+
+         // Evento de cambio en el selector de nivel
+        document.querySelector('#nivel').addEventListener('change', async (e) => {
+            // Obtener el nivel seleccionado
+            var nivel = document.getElementById("nivel").value;
+            // Llamada a la API para generar el tablero segun el nivel seleccionado
+            await fetch(window.location.href + 'generar_tablero.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ nivel })
+            }).then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+
+            // Establecer las dimensiones del tablero segun el nivel
+            var filas, columnas;
+            switch (nivel) {
+                case "facil":
+                    filas = 8;
+                    columnas = 8;
+                    break;
+                case "medio":
+                    filas = 16;
+                    columnas = 16;
+                    break;
+                case "dificil":
+                    filas = 16;
+                    columnas = 30;
+                    break;
+            }
+            // Generar el tablero
+            generarTablero(filas, columnas);
+        });
+    </script>
+</body>
+</html>
