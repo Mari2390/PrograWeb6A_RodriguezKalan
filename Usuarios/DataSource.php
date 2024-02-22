@@ -55,9 +55,7 @@ class DataSource {
       return 0;
     }
   }
-
-   // Retorna el ID del último registro insertado
-   public function lastInsertId() {
+  public function lastInsertId() {
     return $this->conexion->lastInsertId();
 }
 }
