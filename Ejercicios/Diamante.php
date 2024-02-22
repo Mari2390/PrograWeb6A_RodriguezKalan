@@ -33,6 +33,6 @@ if (isset($argv[1])) {
     
     // Llamar a la función para imprimir el diamante
     imprimirDiamante($tamano);
-    } else {
+} else {
     echo "Por favor, ingrese un número como argumento. ";
-    }
+}
