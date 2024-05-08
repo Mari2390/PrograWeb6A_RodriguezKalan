@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="maven-antrun-" default="main"  >
+<target name="main">
+  <copy todir="C:\xampp\htdocs\PrograWeb6A_RodriguezKalan\Struts\target/struts2-rest-showcase/WEB-INF/src/java" failonerror="false">
+    <fileset dir="C:\xampp\htdocs\PrograWeb6A_RodriguezKalan\Struts/src/main/java"/>
+  </copy>
+  <copy todir="C:\xampp\htdocs\PrograWeb6A_RodriguezKalan\Struts\target/struts2-rest-showcase/WEB-INF/src/java" failonerror="false">
+    <fileset dir="C:\xampp\htdocs\PrograWeb6A_RodriguezKalan\Struts/src/main/resources"/>
+  </copy>
+</target>
+</project>
