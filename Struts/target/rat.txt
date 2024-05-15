@@ -1,0 +1,323 @@
+
+*****************************************************
+Summary
+-------
+Generated at: 2024-05-08T07:29:39-06:00
+
+Notes: 0
+Binaries: 0
+Archives: 0
+Standards: 16
+
+Apache Licensed: 9
+Generated Documents: 0
+
+JavaDocs are generated, thus a license header is optional.
+Generated files do not require license headers.
+
+7 Unknown Licenses
+
+*****************************************************
+
+Files with unapproved licenses:
+
+  src/main/java/com/employee/rest/Employee.java
+  src/main/java/com/employee/rest/EmployeeController.java
+  src/main/java/com/employee/rest/EmployeeRepository.java
+  src/main/java/com/user/rest/User.java
+  src/main/java/com/user/rest/UserController.java
+  src/main/java/com/user/rest/UserRepository.java
+  src/main/resources/struts.xml
+
+*****************************************************
+
+*****************************************************
+  Files with Apache License headers will be marked AL
+  Binary files (which do not require any license headers) will be marked B
+  Compressed archives will be marked A
+  Notices, licenses etc. will be marked N
+  AL    pom.xml
+ !????? src/main/java/com/employee/rest/Employee.java
+ !????? src/main/java/com/employee/rest/EmployeeController.java
+ !????? src/main/java/com/employee/rest/EmployeeRepository.java
+ !????? src/main/java/com/user/rest/User.java
+ !????? src/main/java/com/user/rest/UserController.java
+ !????? src/main/java/com/user/rest/UserRepository.java
+  AL    src/main/resources/log4j2.xml
+ !????? src/main/resources/struts.xml
+  AL    src/main/resources/velocity.properties
+  AL    src/main/webapp/WEB-INF/content/orders-deleteConfirm.jsp
+  AL    src/main/webapp/WEB-INF/content/orders-edit.jsp
+  AL    src/main/webapp/WEB-INF/content/orders-editNew.jsp
+  AL    src/main/webapp/WEB-INF/content/orders-index.jsp
+  AL    src/main/webapp/WEB-INF/content/orders-show.jsp
+  AL    src/main/webapp/WEB-INF/web.xml
+ 
+*****************************************************
+
+ Printing headers for text files without a valid license header...
+ 
+=====================================================
+== File: src/main/java/com/employee/rest/Employee.java
+=====================================================
+package com.employee.rest;
+
+public class Employee {
+  private Integer id;
+  private String name;
+  private String company;
+
+  public Employee(Integer id, String name, String company) {
+    this.id = id;
+    this.name = name;
+    this.company = company;
+    
+  }
+
+  public Integer getId() {
+    return id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public String getCompany() {
+    return company;
+  }
+
+  public void setCompany(String company) {
+    this.company = company;
+  }
+
+  @Override
+  public String toString() {
+    return "Employee [id=" + id + ", name=" + name + ", company=" + company + "]";
+  }
+}
+
+=====================================================
+== File: src/main/java/com/employee/rest/EmployeeController.java
+=====================================================
+package com.employee.rest;
+
+import java.util.Map;
+
+import org.apache.struts2.dispatcher.Parameter;
+import org.apache.struts2.rest.DefaultHttpHeaders;
+import org.apache.struts2.rest.HttpHeaders;
+
+import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.ModelDriven;
+
+public class EmployeeController implements ModelDriven<Object> {
+  private static final long serialVersionUID = 1L;
+  private String id;
+
+  private Object model;
+  private EmployeeRepository employeeRepository = new EmployeeRepository();
+  private Map<String, Employee> map;
+  {
+    map = employeeRepository.findAllEmployee();
+  }
+
+  public HttpHeaders index() {
+    model = map;
+    return new DefaultHttpHeaders("index");
+  }
+
+  public HttpHeaders show() {
+    model = employeeRepository.getEmployeeById(id);
+    return new DefaultHttpHeaders("show");
+  }
+
+  public HttpHeaders create() {
+    Map parameters = ActionContext.getContext().getParameters();
+
+    int id = Integer.parseInt(parameters.get("id").toString());
+    String name = parameters.get("name").toString();
+    String company = parameters.get("company").toString();
+
+    Employee employee = new Employee(id, name, company);
+
+    employeeRepository.addEmployee(employee);
+    
+    model = employee;
+
+    return new DefaultHttpHeaders("create").disableCaching();
+  }
+
+  public HttpHeaders update() {
+    Map<String, Parameter> parameters = ActionContext.getContext().getParameters();
+
+=====================================================
+== File: src/main/java/com/employee/rest/EmployeeRepository.java
+=====================================================
+package com.employee.rest;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class EmployeeRepository {
+  private static Map<String, Employee> map = new HashMap<String, Employee>();
+
+  public EmployeeRepository() { }
+
+  public Employee getEmployeeById(String id) {
+    return map.get(id);
+  }
+
+  public Map<String, Employee> findAllEmployee() {
+    return map;
+  }
+
+  public void addEmployee(Employee employee) {
+    map.put(String.valueOf(employee.getId()), employee);
+  }
+
+  public void updateEmployee(Employee e) {
+    map.put(String.valueOf(e.getId()), e);
+    System.out.println(map);
+  }
+
+  public void deleteEmployee(String id) {
+    map.remove(id);
+  }
+}
+
+=====================================================
+== File: src/main/java/com/user/rest/User.java
+=====================================================
+package com.user.rest;
+
+public class User {
+    private Integer id;
+    private String firstname;
+    private String lastname;
+    private String email;
+
+    public Employee(Integer id, String name, String firstname, String lastname, String email) {
+        this.id = id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String name) {
+        this.firstname = name;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Override
+    public String toString() {
+
+=====================================================
+== File: src/main/java/com/user/rest/UserController.java
+=====================================================
+package com.user.rest;
+
+import java.util.Map;
+
+import org.apache.struts2.dispatcher.Parameter;
+import org.apache.struts2.rest.DefaultHttpHeaders;
+import org.apache.struts2.rest.HttpHeaders;
+
+import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.ModelDriven;
+
+public class UserController {
+    private static final long serialVersionUID = 1L;
+    private String id;
+
+    private Object model;
+    private UserRepository UserRepository = new UserRepository();
+    private Map<String, Employee> map;
+    {
+        map = UserRepository.findAllUser();
+    }
+
+    public HttpHeaders index() {
+        model = map;
+        return new DefaultHttpHeaders("index");
+    }
+
+    public HttpHeaders show() {
+        model = UserRepository.getUserById(id);
+        return new DefaultHttpHeaders("show");
+    }
+
+    public HttpHeaders create() {
+        Map parameters = ActionContext.getContext().getParameters();
+
+        int id = Integer.parseInt(parameters.get("id").toString());
+        String firstname = parameters.get("firstname").toString();
+        String lastname = parameters.get("lastname").toString();
+        String email = parameters.get("email").toString();
+
+        Employee employee = new Employee(id, name, company);
+
+        UserRepository.addEmployee(employee);
+        
+        model = employee;
+
+        return new DefaultHttpHeaders("create").disableCaching();
+    }
+
+    public HttpHeaders update() {
+
+=====================================================
+== File: src/main/java/com/user/rest/UserRepository.java
+=====================================================
+public class UserRepository {
+    
+}
+
+=====================================================
+== File: src/main/resources/struts.xml
+=====================================================
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+    <constant name="struts.convention.action.suffix" value="Controller"/>
+    <constant name="struts.convention.action.mapAllMatches" value="true"/>
+    <constant name="struts.convention.default.parent.package" value="rest-default"/>
+    <constant name="struts.convention.package.locators" value="rest"/>
+</struts>

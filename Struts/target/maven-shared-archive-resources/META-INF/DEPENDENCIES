@@ -1,0 +1,117 @@
+// ------------------------------------------------------------------
+// Transitive dependencies of this project determined from the
+// maven pom organized by organization.
+// ------------------------------------------------------------------
+
+Struts 2 Rest Showcase Webapp
+
+
+From: 'an unknown organization'
+  - Caffeine cache (https://github.com/ben-manes/caffeine) com.github.ben-manes.caffeine:caffeine:jar:2.9.3
+    License: Apache License, Version 2.0  (https://www.apache.org/licenses/LICENSE-2.0.txt)
+  - JSON.simple (https://cliftonlabs.github.io/json-simple/) com.github.cliftonlabs:json-simple:jar:3.0.2
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Gson (https://github.com/google/gson/gson) com.google.code.gson:gson:jar:2.10.1
+    License: Apache-2.0  (https://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Checker Qual (https://checkerframework.org) org.checkerframework:checker-qual:jar:3.19.0
+    License: The MIT License  (http://opensource.org/licenses/MIT)
+
+From: 'Apache Software Foundation' (http://apache.org)
+  - Apache FreeMarker (https://freemarker.apache.org/) org.freemarker:freemarker:jar:2.3.32
+    License: Apache License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+From: 'Apache Software Foundation' (https://www.apache.org)
+  - Struts 2 Configuration Browser Plugin (https://struts.apache.org/struts2-plugins/struts2-config-browser-plugin/) org.apache.struts:struts2-config-browser-plugin:jar:6.4.0
+    License: The Apache Software License, Version 2.0  (https://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Struts 2 Convention Plugin (https://struts.apache.org/struts2-plugins/struts2-convention-plugin/) org.apache.struts:struts2-convention-plugin:jar:6.4.0
+    License: The Apache Software License, Version 2.0  (https://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Struts 2 Core (https://struts.apache.org/struts2-core/) org.apache.struts:struts2-core:jar:6.4.0
+    License: The Apache Software License, Version 2.0  (https://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Struts 2 JSON Plugin (https://struts.apache.org/struts2-plugins/struts2-json-plugin/) org.apache.struts:struts2-json-plugin:jar:6.4.0
+    License: The Apache Software License, Version 2.0  (https://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Struts 2 REST Plugin (https://struts.apache.org/struts2-plugins/struts2-rest-plugin/) org.apache.struts:struts2-rest-plugin:jar:6.4.0
+    License: The Apache Software License, Version 2.0  (https://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Struts 2 Velocity Plugin (https://struts.apache.org/struts2-plugins/struts2-velocity-plugin/) org.apache.struts:struts2-velocity-plugin:jar:6.4.0
+    License: The Apache Software License, Version 2.0  (https://www.apache.org/licenses/LICENSE-2.0.txt)
+
+From: 'FasterXML' (http://fasterxml.com)
+  - Woodstox (https://github.com/FasterXML/woodstox) com.fasterxml.woodstox:woodstox-core:bundle:6.5.1
+    License: The Apache License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+From: 'FasterXML' (http://fasterxml.com/)
+  - Jackson-annotations (https://github.com/FasterXML/jackson) com.fasterxml.jackson.core:jackson-annotations:jar:2.16.1
+    License: The Apache Software License, Version 2.0  (https://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Jackson-core (https://github.com/FasterXML/jackson-core) com.fasterxml.jackson.core:jackson-core:jar:2.16.1
+    License: The Apache Software License, Version 2.0  (https://www.apache.org/licenses/LICENSE-2.0.txt)
+  - jackson-databind (https://github.com/FasterXML/jackson) com.fasterxml.jackson.core:jackson-databind:jar:2.16.1
+    License: The Apache Software License, Version 2.0  (https://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Jackson-dataformat-XML (https://github.com/FasterXML/jackson-dataformat-xml) com.fasterxml.jackson.dataformat:jackson-dataformat-xml:jar:2.16.1
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+From: 'fasterxml.com' (http://fasterxml.com)
+  - Stax2 API (http://github.com/FasterXML/stax2-api) org.codehaus.woodstox:stax2-api:bundle:4.2.1
+    License: The BSD License  (http://www.opensource.org/licenses/bsd-license.php)
+
+From: 'Google LLC' (http://www.google.com)
+  - error-prone annotations (https://errorprone.info/error_prone_annotations) com.google.errorprone:error_prone_annotations:jar:2.10.0
+    License: Apache 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+From: 'OpenSymphony' (http://www.opensymphony.com)
+  - OGNL - Object Graph Navigation Library (https://github.com/jkuhnert/ognl/) ognl:ognl:jar:3.3.4
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+From: 'OW2' (http://www.ow2.org/)
+  - asm (http://asm.ow2.io/) org.ow2.asm:asm:jar:9.6
+    License: BSD-3-Clause  (https://asm.ow2.io/license.html)
+  - asm-commons (http://asm.ow2.io/) org.ow2.asm:asm-commons:jar:9.6
+    License: BSD-3-Clause  (https://asm.ow2.io/license.html)
+  - asm-tree (http://asm.ow2.io/) org.ow2.asm:asm-tree:jar:9.6
+    License: BSD-3-Clause  (https://asm.ow2.io/license.html)
+
+From: 'QOS.ch' (http://www.qos.ch)
+  - SLF4J API Module (http://www.slf4j.org) org.slf4j:slf4j-api:jar:2.0.12
+    License: MIT License  (http://www.opensource.org/licenses/mit-license.php)
+
+From: 'Shigeru Chiba, www.javassist.org'
+  - Javassist (http://www.javassist.org/) org.javassist:javassist:bundle:3.29.0-GA
+    License: MPL 1.1  (http://www.mozilla.org/MPL/MPL-1.1.html)    License: LGPL 2.1  (http://www.gnu.org/licenses/lgpl-2.1.html)    License: Apache License 2.0  (https://www.apache.org/licenses/LICENSE-2.0)
+
+From: 'The Apache Software Foundation' (http://www.apache.org/)
+  - Apache Commons Collections (http://commons.apache.org/collections/) commons-collections:commons-collections:jar:3.2.2
+    License: Apache License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Apache Commons Digester (http://commons.apache.org/digester/) org.apache.commons:commons-digester3:jar:3.2
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+From: 'The Apache Software Foundation' (https://www.apache.org/)
+  - Apache Commons BeanUtils (https://commons.apache.org/proper/commons-beanutils/) commons-beanutils:commons-beanutils:jar:1.9.4
+    License: Apache License, Version 2.0  (https://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Apache Commons FileUpload (https://commons.apache.org/proper/commons-fileupload/) commons-fileupload:commons-fileupload:jar:1.5
+    License: Apache-2.0  (https://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Apache Commons IO (https://commons.apache.org/proper/commons-io/) commons-io:commons-io:jar:2.15.1
+    License: Apache-2.0  (https://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Apache Commons Logging (https://commons.apache.org/proper/commons-logging/) commons-logging:commons-logging:jar:1.3.0
+    License: Apache-2.0  (https://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Apache Commons Lang (https://commons.apache.org/proper/commons-lang/) org.apache.commons:commons-lang3:jar:3.14.0
+    License: Apache-2.0  (https://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Apache Commons Text (https://commons.apache.org/proper/commons-text) org.apache.commons:commons-text:jar:1.11.0
+    License: Apache-2.0  (https://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Apache Log4j API (https://logging.apache.org/log4j/2.x/log4j/log4j-api/) org.apache.logging.log4j:log4j-api:jar:2.23.1
+    License: Apache-2.0  (https://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Apache Log4j Core (https://logging.apache.org/log4j/2.x/log4j/log4j-core/) org.apache.logging.log4j:log4j-core:jar:2.23.1
+    License: Apache-2.0  (https://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Apache Velocity - Engine (http://velocity.apache.org/engine/devel/velocity-engine-core/) org.apache.velocity:velocity-engine-core:jar:2.3
+    License: Apache License, Version 2.0  (https://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Apache Velocity Tools - Generic tools (https://velocity.apache.org/tools/devel/velocity-tools-generic/) org.apache.velocity.tools:velocity-tools-generic:jar:3.1
+    License: Apache License, Version 2.0  (https://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Apache Velocity Tools - View tools (https://velocity.apache.org/tools/devel/velocity-tools-view/) org.apache.velocity.tools:velocity-tools-view:jar:3.1
+    License: Apache License, Version 2.0  (https://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Apache Velocity Tools - JSP support (https://velocity.apache.org/tools/devel/velocity-tools-view-jsp/) org.apache.velocity.tools:velocity-tools-view-jsp:jar:3.1
+    License: Apache License, Version 2.0  (https://www.apache.org/licenses/LICENSE-2.0.txt)
+
+From: 'XStream' (http://x-stream.github.io)
+  - XStream Core (http://x-stream.github.io/xstream) com.thoughtworks.xstream:xstream:jar:1.4.20
+    License: BSD-3-Clause  (http://x-stream.github.io/license.html)
+
+
+
+
