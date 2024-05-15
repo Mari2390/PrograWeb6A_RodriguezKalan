@@ -99,4 +99,25 @@ public class UserDAO implements DAOGeneral<Integer, User> {
     public boolean eliminar(Integer id) {
         return false;
     }
+
+    public User findByUsernameOrEmail(String usernameOrEmail) {
+        String query = "SELECT * FROM users WHERE name = ? OR email = ?";
+        try {
+            Connection conn = c.obtener();
+            PreparedStatement statement = conn.prepareStatement(query);
+            statement.setString(1, usernameOrEmail);
+            statement.setString(2, usernameOrEmail);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                String email = resultSet.getString("email");
+                String password = resultSet.getString("password");
+                return new User(id, name, email, password);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
