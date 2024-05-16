@@ -58,21 +58,18 @@ public class AutenticacionServlet extends HttpServlet {
     }
 
     private void register(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String username = req.getParameter("username");
-        String password = req.getParameter("password");
-        String fullName = req.getParameter("Name");
+        String name = req.getParameter("Name");
         String email = req.getParameter("email");
+        String password = req.getParameter("password");
 
-        if (username == null || password == null || fullName == null || email == null) {
+        if (name == null || email == null || password == null) {
             jResp.failed(req, resp, "Todos los campos son obligatorios", HttpServletResponse.SC_FORBIDDEN);
             return;
         }
 
-        // Aquí debes insertar el usuario en la base de datos
-        // Ejemplo de cómo podrías hacerlo:
         UserDAO userDAO = new UserDAO();
         String encryptedPassword = encryptPassword(password);
-        User newUser = new User(email, username, encryptedPassword);
+        User newUser = new User(name, email, encryptedPassword);
         if (userDAO.agregar(newUser)) {
             jResp.success(req, resp, "Usuario creado con éxito", newUser);
         } else {

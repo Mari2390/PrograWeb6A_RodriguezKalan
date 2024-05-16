@@ -2,15 +2,9 @@ package com.example.programacionweb_its_prac1;
 
 public class User {
     private int id;
-    private String name;
-    private String email;
-    private String password;
+    private String name, email, password;
 
-    private String jwt;
-
-
-    public User(int id, String name, String email, String password) {
-    }
+    public User() {}
 
     public User(String name, String email, String password) {
         this.name = name;
@@ -18,11 +12,26 @@ public class User {
         this.password = password;
     }
 
+    public User(int id, String name, String email, String password) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
 
-    public void setFullName(String Name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -34,7 +43,6 @@ public class User {
         this.email = email;
     }
 
-
     public String getPassword() {
         return password;
     }
@@ -43,11 +51,25 @@ public class User {
         this.password = password;
     }
 
-    public String getJwt() {
-        return jwt;
+    /**
+     * Este metodo devuelve un array con los valores que se utilizaran para crear el modelo
+     * en base de datos
+     * @return Object[]
+     */
+    public Object[] getAll() {
+        return new Object[]{
+                getName(), getEmail(), getPassword()
+        };
     }
 
-    public void setJwt(String jwt) {
-        this.jwt = jwt;
+    public String toString() {
+        return "["
+                +
+                "ID: " + this.id + "\t" +
+                "Nombre: " + this.name + "\t" +
+                "Email: " + this.email + "\t" +
+                "Password: " + this.password + "\n"
+                +
+                "]";
     }
 }

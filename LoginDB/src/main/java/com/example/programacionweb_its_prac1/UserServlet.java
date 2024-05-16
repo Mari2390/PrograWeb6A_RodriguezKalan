@@ -80,8 +80,6 @@ public class UserServlet extends HttpServlet {
             } else {
                 jResp.failed(req, resp, "Usuario no autenticado", 401);
             }
-        } else {
-            jResp.failed(req, resp, "Token de autorización no válido", 422);
         }
     }
 
